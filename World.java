@@ -9,10 +9,6 @@ package antgame;
  *
  * @author ajfr20
  */
-class Ant {
-    public int id;
+public class World {
     
-    public Ant(int i){
-        id = i;
-    }
 }
