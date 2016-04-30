@@ -16,6 +16,7 @@ public class Cell {
   public int food_particles;
   public boolean anthill;
   public Ant ant;
+  //There can be up to 6 different types of marker for each colour in a cell
   public int cellMarkers[][] = new int[2][6];
   Cell[] adj_cells;
     
@@ -27,6 +28,7 @@ public class Cell {
             this.row_no = row_no;
             this.coloumn_no = coloumn_no;
         }
+        //Each marker is initilised as 0 as this means that that marker is not present in the cell
         int cellMarkers[][] = {{0,0,0,0,0,0} ,{0,0,0,0,0,0}};
         this.rocky = rocky;
         food_particles = food;
@@ -117,12 +119,12 @@ public class Cell {
     }
     
     public boolean senseMarker(int colour, int marker){
-        //If statement is true returns true
+        //If a the int for a particular marker is == to 1 returns true else false
       return cellMarkers[colour][marker]==1;
     }
     
     public boolean senseAnyMarker(int colour){
-        //Flip flops colour so that you get the opposite colour
+        //Flip flops colour so that you get the opposite colour(Black = 0 Red = 1 therefore colour = 1 - 0 for red and colour = 1 - 1)
         colour = 1 - colour;
         boolean anyEnemyMarkerHere = false;
         int markerCnt = 0;
