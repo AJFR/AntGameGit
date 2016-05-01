@@ -85,6 +85,7 @@ public class UserInterface {
 				//open new window
 				AntGame nw = new AntGame();
 				nw.NewScreen();
+				//Removes the login screen after pushing login
                                 frame.setVisible(false);
 				
 			}
