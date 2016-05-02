@@ -10,9 +10,19 @@ package antgame;
  * @author ajfr20
  */
 class Ant {
-    public int id;
+    public final int id;
+    final int colour;
+    boolean isAlive;
+    Cell currentCell;
+    int direction;
     
-    public Ant(int i){
+    
+    public Ant(int i, int colour, Cell cell, int direction){
         id = i;
+        this.colour = colour;
+        isAlive = true;
+       currentCell = cell;
+       this.direction = direction;
+       
     }
 }

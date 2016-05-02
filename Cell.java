@@ -10,17 +10,47 @@ package antgame;
  * @author freakin
  */
 public class Cell {
-  public final int row_no;
-  public final int coloumn_no;
-  public boolean rocky;
-  public int food_particles;
-  public boolean anthill;
-  public Ant ant;
+  private final int row_no;
+  private final int coloumn_no;
+  private boolean rocky = false;
+  private int food_particles = 0;
+  //Might replace with an int for anthill
+  private boolean anthill = false;
+  private Ant ant;
   //There can be up to 6 different types of marker for each colour in a cell
   public int cellMarkers[][] = new int[2][6];
   Cell[] adj_cells;
     
-    public Cell(int row_no, int coloumn_no, boolean rocky, boolean anthill, int food){
+    public Cell(int row_no, int coloumn_no, char cellType){
+        //Assigns row and coloumn number as usual
+        if(row_no < 0 || coloumn_no < 0){
+            throw new IllegalArgumentException("Coloumn and Row numbers must be greater than zero");
+        }
+        else{
+            this.row_no = row_no;
+            this.coloumn_no = coloumn_no;
+        }
+        //Turns the character into an int if the int is greater than zero
+        int cellFood = Character.getNumericValue(cellType);
+        if(cellFood>=0&&cellFood<=9){
+            food_particles = cellFood;
+        }
+        else{
+            switch(cellType){
+                case '#':
+                    rocky = true;
+                    break;
+                case '+':
+                    //Might replace with an int for anthill
+                    anthill = true;
+                case '-':
+                    anthill = true;
+                
+            }
+        }
+    }
+    
+    private Cell(int row_no, int coloumn_no, boolean rocky, boolean anthill, int food){
         if(row_no < 0 || coloumn_no < 0){
             throw new IllegalArgumentException("Coloumn and Row numbers must be greater than zero");
         }

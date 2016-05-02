@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import javax.swing.UIManager;
 import javax.swing.JMenuBar;
 
@@ -47,9 +48,11 @@ public class UserInterface {
 
 	/**
 	 * Create the application.
+     * @throws java.io.IOException
 	 */
-	public UserInterface() {
-		initialize();
+	public UserInterface() throws IOException {
+	    initialize();
+            WorldReader world = new WorldReader();
 	}
 
 	/**
@@ -85,8 +88,8 @@ public class UserInterface {
 				//open new window
 				AntGame nw = new AntGame();
 				nw.NewScreen();
-				//Removes the login screen after pushing login
                                 frame.setVisible(false);
+                                
 				
 			}
 		});
