@@ -26,8 +26,8 @@ public class WorldReader {
     BufferedReader worldReader;
     char[] worldCharArray;
     String worldString;
-    String sizeX;
-    String sizeY;
+    int sizeX;
+    int sizeY;
     
     
     WorldReader() throws FileNotFoundException, IOException{
@@ -36,8 +36,8 @@ public class WorldReader {
             //Creates a stringbuilder to create the string of the world
             StringBuilder worldBuild = new StringBuilder();
             //The top two lines of the file are always the x and y size of the world
-            sizeX = worldReader.readLine();
-            sizeY = worldReader.readLine();
+            sizeX = Integer.parseInt(worldReader.readLine());
+            sizeY = Integer.parseInt(worldReader.readLine());
             String lineRead = worldReader.readLine();
             //Whilst the reader still has lines
             while (lineRead != null) {
@@ -59,7 +59,7 @@ public class WorldReader {
                 worldCharArray = noSpaces.toCharArray();
                 System.out.println(Arrays.toString(worldCharArray));
             }
+    
         }
     }
-    
 }
