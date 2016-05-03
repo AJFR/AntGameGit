@@ -19,6 +19,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.JMenuBar;
 
@@ -29,6 +31,7 @@ public class UserInterface {
 	private JTextField textField;
 	private JLabel lblAntGame;
 	private JLabel lblProducedBySe;
+        WorldReader world;
 
 	/**
 	 * Launch the application.
@@ -52,7 +55,6 @@ public class UserInterface {
 	 */
 	public UserInterface() throws IOException {
 	    initialize();
-            WorldReader world = new WorldReader();
 	}
 
 	/**
@@ -86,7 +88,12 @@ public class UserInterface {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//open new window
-				AntGame nw = new AntGame();
+				AntGame nw = null;
+                            try {
+                                nw = new AntGame();
+                            } catch (IOException ex) {
+                                Logger.getLogger(UserInterface.class.getName()).log(Level.SEVERE, null, ex);
+                            }
 				nw.NewScreen();
                                 frame.setVisible(false);
                                 

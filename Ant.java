@@ -1,36 +1,28 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package antgame;
 
 /**
  *
- * @author mfm29
+ * @author ajfr20
  */
-public class Ant {
-
-    boolean colour;
-    String id;
-    int resting, direction, currentState;
-    boolean has_food;
-
-    /**
-     * 
-     * @param colour colour of the ant, blue if true, false otherwise
-     * @param id The unique ID of he ant.
-     */
-    public Ant(boolean colour, String id) {
-        this.colour = colour;
-        this.id = id;
-        resting = 0;
-        direction = 0;
-        has_food = false;
-        currentState = 0;
-    }
+class Ant {
+    public final int id;
+    final int colour;
+    boolean isAlive;
+    Cell currentCell;
+    int direction;
     
-    public void step(){
-        
-        
+    
+    public Ant(int i, int colour, Cell cell, int direction){
+        id = i;
+        this.colour = colour;
+        isAlive = true;
+       currentCell = cell;
+       this.direction = direction;
+       
     }
 }

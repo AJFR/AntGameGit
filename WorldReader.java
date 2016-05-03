@@ -32,7 +32,7 @@ public class WorldReader {
     
     WorldReader() throws FileNotFoundException, IOException{
         //Tries to load the file currantly tiny.world
-        try(BufferedReader worldReader = new BufferedReader(new FileReader("tiny.world"))) {
+        try(BufferedReader worldReader = new BufferedReader(new FileReader("1.world"))) {
             //Creates a stringbuilder to create the string of the world
             StringBuilder worldBuild = new StringBuilder();
             //The top two lines of the file are always the x and y size of the world
@@ -42,13 +42,13 @@ public class WorldReader {
             //Whilst the reader still has lines
             while (lineRead != null) {
                 //Adds the lines to the stringbuilder putting a line seperator between each line
-                worldBuild.append(worldReader.readLine());
+                worldBuild.append(lineRead);
                 worldBuild.append("\n");
                 lineRead = worldReader.readLine();
             }
             worldString = worldBuild.toString();
             
-            worldValidation = Pattern.compile("(#\\s)*#\\n((\\s#|#)(\\s[0-9+.#-])*(\\s#|#)\\n)*(\\s#|#)(\\s#)+");
+            worldValidation = Pattern.compile("(#\\s)*#\\s\\n((\\s#|#)(\\s[0-9+.#-])*(\\s#|#)\\s\\n)*(\\s#|#)(\\s#)+");
             worldMatcher = worldValidation.matcher(worldString);
             
             System.out.println(worldValidation.pattern());
@@ -57,7 +57,7 @@ public class WorldReader {
                 System.out.println(worldString);
                 String noSpaces = worldString.replaceAll("\\s", "");
                 worldCharArray = noSpaces.toCharArray();
-                System.out.println(Arrays.toString(worldCharArray));
+               // System.out.println(Arrays.toString(worldCharArray));
             }
     
         }
