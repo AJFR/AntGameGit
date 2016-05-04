@@ -1,3 +1,5 @@
+package filechoosertest;
+
 //
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -64,11 +66,9 @@ public class FileChooserTest extends JFrame {
       }
     }
   }
-
-  public static void main(String[] args) {
-    run(new FileChooserTest(), 250, 110);
+ public static void FileChooserTest() {
+    
   }
-
   public static void run(JFrame frame, int width, int height) {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(width, height);

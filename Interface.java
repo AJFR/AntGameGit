@@ -1,3 +1,6 @@
+package FileChooserTest;
+import filechoosertest.FileChooserTest;
+import static filechoosertest.FileChooserTest.run;
 import java.awt.EventQueue;
 
 import javax.swing.*;
@@ -21,7 +24,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextField;
 
 
-public class Interface {
+public class Interface extends JFrame{
 
 	private JFrame frame;
 	private JTextField textField_Players;
@@ -88,6 +91,14 @@ public class Interface {
 		frame.getContentPane().add(btn_Finish);
 		
 		JButton btn_Insert = new JButton("INSERT");
+                btn_Insert.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent arg0){
+                     run(new FileChooserTest(), 250, 110);
+                    }
+                
+                  }
+                );
+                
 		btn_Insert.setFont(new Font("Tw Cen MT", Font.BOLD, 22));
 		btn_Insert.setForeground(new Color(0, 0, 139));
 		btn_Insert.setBounds(25, 384, 137, 50);
