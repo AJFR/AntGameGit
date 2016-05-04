@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -37,11 +38,8 @@ public class WorldReader {
             // System.out.println(worldString);
             String noSpaces = worldString.replaceAll("\\s", "");
             buildCharArray(noSpaces);
-            
-               System.out.println(Arrays.toString(worldCharArray));
-            }
-    
-        
+            System.out.println(Arrays.toString(worldCharArray));
+        }
     }
     
     private boolean validateWorld(String worldString){
@@ -50,7 +48,7 @@ public class WorldReader {
         return worldMatcher.find();
     }
     
-    private String buildWorld() throws FileNotFoundException, IOException{
+    private String buildWorld() throws IOException{
         //Tries to load the file currantly tiny.world
         try(BufferedReader worldReader = new BufferedReader(new FileReader("tiny.world"))) {
             //Creates a stringbuilder to create the string of the world
@@ -68,8 +66,8 @@ public class WorldReader {
             }
             worldString = worldBuild.toString();
             return worldString;
+        }
     }
-}
 
     private void buildCharArray(String noSpaces) {
         char[] worldChar = noSpaces.toCharArray();
