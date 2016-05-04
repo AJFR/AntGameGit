@@ -45,9 +45,12 @@ public class Cell {
                     anthill = true;
                 case '-':
                     anthill = true;
+                default:
+                    throw new IllegalArgumentException("Illegal character");
                 
             }
         }
+        int cellMarkers[][] = {{0,0,0,0,0,0} ,{0,0,0,0,0,0}};
     }
     
     private Cell(int row_no, int coloumn_no, boolean rocky, boolean anthill, int food){

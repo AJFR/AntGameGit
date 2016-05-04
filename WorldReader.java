@@ -24,15 +24,35 @@ public class WorldReader {
     Pattern worldValidation;
     Matcher worldMatcher;
     BufferedReader worldReader;
-    char[] worldCharArray;
+    char[][] worldCharArray;
     String worldString;
     int sizeX;
     int sizeY;
     
     
     WorldReader() throws FileNotFoundException, IOException{
+        buildWorld();
+        if(validateWorld(worldString)){
+            System.out.println("World Matches!");
+            // System.out.println(worldString);
+            String noSpaces = worldString.replaceAll("\\s", "");
+            buildCharArray(noSpaces);
+            
+               System.out.println(Arrays.toString(worldCharArray));
+            }
+    
+        
+    }
+    
+    private boolean validateWorld(String worldString){
+        worldValidation = Pattern.compile("(#\\s)*#\\s\\n((\\s#|#)(\\s[0-9+.#-])*(\\s#|#)\\s\\n)*(\\s#|#)(\\s#)+");
+        worldMatcher = worldValidation.matcher(worldString);
+        return worldMatcher.find();
+    }
+    
+    private String buildWorld() throws FileNotFoundException, IOException{
         //Tries to load the file currantly tiny.world
-        try(BufferedReader worldReader = new BufferedReader(new FileReader("1.world"))) {
+        try(BufferedReader worldReader = new BufferedReader(new FileReader("tiny.world"))) {
             //Creates a stringbuilder to create the string of the world
             StringBuilder worldBuild = new StringBuilder();
             //The top two lines of the file are always the x and y size of the world
@@ -47,19 +67,30 @@ public class WorldReader {
                 lineRead = worldReader.readLine();
             }
             worldString = worldBuild.toString();
-            
-            worldValidation = Pattern.compile("(#\\s)*#\\s\\n((\\s#|#)(\\s[0-9+.#-])*(\\s#|#)\\s\\n)*(\\s#|#)(\\s#)+");
-            worldMatcher = worldValidation.matcher(worldString);
-            
-            System.out.println(worldValidation.pattern());
-            if(worldMatcher.find()){
-                System.out.println("World Matches!");
-                System.out.println(worldString);
-                String noSpaces = worldString.replaceAll("\\s", "");
-                worldCharArray = noSpaces.toCharArray();
-               // System.out.println(Arrays.toString(worldCharArray));
-            }
+            return worldString;
+    }
+}
+
+    private void buildCharArray(String noSpaces) {
+        char[] worldChar = noSpaces.toCharArray();
+            int arrayCnt = 0;
+            worldCharArray = new char[sizeX-1][sizeY-1];
+            for(int r = 0; r<sizeX-1; r++){
+                for(int c = 0; c<sizeY-1;c++){
+                    worldCharArray[r][c] = worldChar[arrayCnt];
+                    }
+                }
+    }
     
-        }
+    char[][] getWorldCharArray(){
+        return worldCharArray;
+    }
+    
+    int getX(){
+        return sizeX;
+    }
+    
+    int getY(){
+        return sizeY;
     }
 }
