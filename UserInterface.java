@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+ 
+ 
+ //OLD INTERFACE DO NOT USE!
+ 
+ 
 package antgame;
 import java.awt.EventQueue;
 
