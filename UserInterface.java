@@ -5,7 +5,7 @@
  */
  
  
- //OLD INTERFACE DO NOT USE!
+ //OLD INTERFACE DO NOT USE!!
  
  
 package antgame;
