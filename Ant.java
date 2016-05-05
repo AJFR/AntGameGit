@@ -19,10 +19,34 @@ class Ant {
     
     public Ant(int i, int colour, Cell cell, int direction){
         id = i;
+        // 0 black 1 red
         this.colour = colour;
         isAlive = true;
        currentCell = cell;
        this.direction = direction;
+       
+    }
+    
+    public int getColour(){
+        return colour;
+    }
+    
+    public void changeDirection(int dir){
+        direction = dir;
+    }
+    
+    public void turnLeft(){
+        direction--;
+        if(direction<0){
+            direction = 5;
+        }
+    }
+    
+    public void turnRight(){
+       direction++;
+       if(direction>5){
+           direction = 0;
+       }
        
     }
 }

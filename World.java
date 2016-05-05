@@ -60,5 +60,21 @@ public class World {
     void dropFood(int r, int c){
         gameBoard[r][c].addfood();
     }
+    
+    void senseMarker(int r, int c, int marker, Ant ant){
+        gameBoard[r][c].senseMarker(ant.getColour(), marker);
+    }
+    
+    void senseAnyMarker(int r, int c , Ant ant){
+        gameBoard[r][c].senseAnyMarker(ant.getColour());
+    }
+    
+    void turnLeft(Ant ant){
+        ant.turnLeft();
+    }
+    
+    void turnRight(Ant ant){
+        ant.turnRight();
+    }
 }
 
