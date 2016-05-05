@@ -3,75 +3,48 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package antgame;
+package assembledantgame;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author ajfr20
  */
 class Ant {
+
     public final int id;
     final int colour;
     boolean isAlive;
     Cell currentCell;
     int direction;
-    int resting = 0;
-    
-    
-    public Ant(int i, int colour, Cell cell, int direction){
-        id = i;
-        // 0 black 1 red
+    private int state;
+    private AntBrainReader antBrainReader;
+    ArrayList<String> fsa;
+
+    public Ant(int antID, int colour, int direction) {
+        antBrainReader = new AntBrainReader();
+        state = 0;
+        id = antID;
         this.colour = colour;
         isAlive = true;
-       currentCell = cell;
-       this.direction = direction;
-       
+        this.direction = direction;
+        fsa = antBrainReader.getFSA();
     }
-    
-    public int getColour(){
+
+    public String nextMove() {
+        return fsa.get(state);
+    }
+
+    public void incrementState() {
+        state++;
+    }
+
+    public String getInstruction() {
+        return fsa.get(state);
+    }
+
+    int getColour() {
         return colour;
     }
-    
-    public Cell getCell(){
-        return currentCell;
-    }
-    
-    public void changeDirection(int dir){
-        direction = dir;
-    }
-    
-    public void turnLeft(){
-        direction--;
-        if(direction<0){
-            direction = 5;
-        }
-    }
-    
-    public void turnRight(){
-       direction++;
-       if(direction>5){
-           direction = 0;
-       }
-       
-    }
-    
-    public void changeCell(Cell cell){
-        currentCell = cell;
-    }
-    
-    public boolean isResting(){
-        return resting>0;
-    }
-    
-    public void rest(){
-        resting = 14;
-    }
-    
-    public void decreaseRest(){
-        resting--;
-        if(resting<0){
-            resting = 0;
-        }
-    }
-    
 }

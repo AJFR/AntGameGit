@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package antgame;
+package assembledantgame;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,8 +19,14 @@ public class World {
     Random rand;
     WorldReader wr;
     Cell[][] gameBoard;
-    World() throws IOException{
-        wr = new WorldReader();
+    World() {
+        try {
+            wr = new WorldReader();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        }
         char[][] worldChar = wr.getWorldCharArray();
         System.out.println(Arrays.toString(worldChar));
         gameBoard = new Cell[wr.getX()][wr.getY()];
@@ -25,11 +34,9 @@ public class World {
     }
 
     private Cell[][] createBoard(char[][] worldCharArray, int x, int y) {
-        for(int c = 0; c<x-1;c++){
-            for(int r = 0; r<y-1;r++){
-                gameBoard[c][r] = new Cell(c, r, worldCharArray[r][c]);
-                setNeighbours(gameBoard[c][r]);
-                
+        for(int r = 0; r<x-1;r++){
+            for(int c = 0; c<y-1;c++){
+                gameBoard[r][c] = new Cell(r, c, worldCharArray[r][c]);
             }
         }
         return gameBoard;
@@ -39,64 +46,27 @@ public class World {
         return gameBoard;
     }
     
-    public void addAnt(int c, int r, Ant ant){
-        ant.changeCell(gameBoard[c][r]);
-        gameBoard[c][r].addAnt(ant);
+    public void addAnt(int r, int c, Ant ant){
+        gameBoard[r][c].addAnt(ant);
     }
     
-    Ant removeAnt(int c, int r){
-        //Not sure
-        gameBoard[c][r].getAnt().changeCell(null);
-        return gameBoard[c][r].removeAnt();
+    Ant removeAnt(int r, int c){
+        return gameBoard[r][c].removeAnt();
     }
     
-    void addMarker(int c, int r, int marker, Ant ant){
-        gameBoard[c][r].setMarker(marker, ant.getColour());
+    void addMarker(int r, int c, int marker, Ant ant){
+        gameBoard[r][c].setMarker(marker, ant.getColour());
     }
     
-    void removeMarker(int c, int r, int marker, Ant ant){
-        gameBoard[c][r].removeMarker(marker, ant.getColour());
+    void removeMarker(int r, int c, int marker, Ant ant){
+        gameBoard[r][c].removeMarker(marker, ant.getColour());
     }
     
-    void pickUpFood(int c, int r){
-        gameBoard[c][r].decreaseFood();
+    void pickUpFood(int r, int c){
+        gameBoard[r][c].decreaseFood();
     }
     
-    void dropFood(int c, int r){
-        gameBoard[c][r].addfood();
-    }
-    
-    void senseMarker(int c, int r, int marker, Ant ant){
-        gameBoard[c][r].senseMarker(ant.getColour(), marker);
-    }
-    
-    void senseAnyMarker(int c, int r , Ant ant){
-        gameBoard[c][r].senseAnyMarker(ant.getColour());
-    }
-    
-    void turnLeft(Ant ant){
-        ant.turnLeft();
-    }
-    
-    void turnRight(Ant ant){
-        ant.turnRight();
-    }
-    
-    Cell getByPos(int c, int r){
-        return gameBoard[c][r];
-    }
-    
-    void setNeighbours(Cell cell){
-        Cell[] neighbours = new Cell[6];
-        //Sets the neighbours by direction i.e. dir = 0 increase coloumn by 1 same row
-        neighbours[0] = getByPos(cell.getColoumn()+1, cell.getRow());
-        neighbours[1] = getByPos(cell.getColoumn()+1, cell.getRow()+1);
-        neighbours[2] = getByPos(cell.getColoumn(), cell.getRow()+1);
-        neighbours[3] = getByPos(cell.getColoumn()-1, cell.getRow());
-        neighbours[4] = getByPos(cell.getColoumn(), cell.getRow()-1);
-        neighbours[5] = getByPos(cell.getColoumn(), cell.getRow()+1);
-        //Calls the setNeighbours method in the cell
-        cell.setNeighbours(neighbours);
+    void dropFood(int r, int c){
+        gameBoard[r][c].addfood();
     }
 }
-
