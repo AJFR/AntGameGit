@@ -10,8 +10,8 @@ package antgame;
  * @author freakin
  */
 public class Cell {
-  private final int row_no;
   private final int coloumn_no;
+  private final int row_no;
   private boolean rocky = false;
   private int food_particles = 0;
   //Might replace with an int for anthill
@@ -21,7 +21,7 @@ public class Cell {
   public int cellMarkers[][] = new int[2][6];
   Cell[] adj_cells;
     
-    public Cell(int row_no, int coloumn_no, char cellType){
+    public Cell(int coloumn_no, int row_no, char cellType){
         //Assigns row and coloumn number as usual
         if(row_no < 0 || coloumn_no < 0){
             throw new IllegalArgumentException("Coloumn and Row numbers must be greater than zero");
@@ -53,7 +53,7 @@ public class Cell {
         int cellMarkers[][] = {{0,0,0,0,0,0} ,{0,0,0,0,0,0}};
     }
     
-    private Cell(int row_no, int coloumn_no, boolean rocky, boolean anthill, int food){
+    public Cell(int coloumn_no, int row_no, boolean rocky, boolean anthill, int food){
         if(row_no < 0 || coloumn_no < 0){
             throw new IllegalArgumentException("Coloumn and Row numbers must be greater than zero");
         }
@@ -171,5 +171,9 @@ public class Cell {
             markerCnt++;
         }
         return anyEnemyMarkerHere;
+    }
+    
+    public Ant getAnt(){
+        return ant;
     }
 }

@@ -15,6 +15,7 @@ class Ant {
     boolean isAlive;
     Cell currentCell;
     int direction;
+    int resting = 0;
     
     
     public Ant(int i, int colour, Cell cell, int direction){
@@ -29,6 +30,10 @@ class Ant {
     
     public int getColour(){
         return colour;
+    }
+    
+    public Cell getCell(){
+        return currentCell;
     }
     
     public void changeDirection(int dir){
@@ -49,4 +54,24 @@ class Ant {
        }
        
     }
+    
+    public void changeCell(Cell cell){
+        currentCell = cell;
+    }
+    
+    public boolean isResting(){
+        return resting>0;
+    }
+    
+    public void rest(){
+        resting = 14;
+    }
+    
+    public void decreaseRest(){
+        resting--;
+        if(resting<0){
+            resting = 0;
+        }
+    }
+    
 }
