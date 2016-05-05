@@ -28,6 +28,7 @@ public class World {
         for(int c = 0; c<x-1;c++){
             for(int r = 0; r<y-1;r++){
                 gameBoard[c][r] = new Cell(c, r, worldCharArray[r][c]);
+                setNeighbours(gameBoard[c][r]);
                 
             }
         }
@@ -85,9 +86,16 @@ public class World {
         return gameBoard[c][r];
     }
     
-    void setUpNeighbours(Cell cell){
+    void setNeighbours(Cell cell){
         Cell[] neighbours = new Cell[6];
+        //Sets the neighbours by direction i.e. dir = 0 increase coloumn by 1 same row
         neighbours[0] = getByPos(cell.getColoumn()+1, cell.getRow());
+        neighbours[1] = getByPos(cell.getColoumn()+1, cell.getRow()+1);
+        neighbours[2] = getByPos(cell.getColoumn(), cell.getRow()+1);
+        neighbours[3] = getByPos(cell.getColoumn()-1, cell.getRow());
+        neighbours[4] = getByPos(cell.getColoumn(), cell.getRow()-1);
+        neighbours[5] = getByPos(cell.getColoumn(), cell.getRow()+1);
+        //Calls the setNeighbours method in the cell
         cell.setNeighbours(neighbours);
     }
 }
