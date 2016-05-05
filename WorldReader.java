@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assembledantgame;
+package antgame;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -15,12 +15,13 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import static java.util.regex.Pattern.compile;
 
+
+
 /**
  *
  * @author freakin
  */
 public class WorldReader {
-
     Pattern worldValidation;
     Matcher worldMatcher;
     BufferedReader worldReader;
@@ -28,27 +29,28 @@ public class WorldReader {
     String worldString;
     int sizeX;
     int sizeY;
-
-    WorldReader() throws FileNotFoundException, IOException {
+    
+    
+    WorldReader() throws FileNotFoundException, IOException{
         buildWorld();
-        if (validateWorld(worldString)) {
+        if(validateWorld(worldString)){
             System.out.println("World Matches!");
             // System.out.println(worldString);
             String noSpaces = worldString.replaceAll("\\s", "");
             buildCharArray(noSpaces);
-            System.out.println(Arrays.toString(worldCharArray));
+            //System.out.println(Arrays.toString(worldCharArray));
         }
     }
-
-    private boolean validateWorld(String worldString) {
+    
+    private boolean validateWorld(String worldString){
         worldValidation = Pattern.compile("(#\\s)*#\\s\\n((\\s#|#)(\\s[0-9+.#-])*(\\s#|#)\\s\\n)*(\\s#|#)(\\s#)+");
         worldMatcher = worldValidation.matcher(worldString);
         return worldMatcher.find();
     }
-
-    private String buildWorld() throws IOException {
+    
+    private String buildWorld() throws IOException{
         //Tries to load the file currantly tiny.world
-        try (BufferedReader worldReader = new BufferedReader(new FileReader("tiny.world"))) {
+        try(BufferedReader worldReader = new BufferedReader(new FileReader("1.world"))) {
             //Creates a stringbuilder to create the string of the world
             StringBuilder worldBuild = new StringBuilder();
             //The top two lines of the file are always the x and y size of the world
@@ -69,24 +71,24 @@ public class WorldReader {
 
     private void buildCharArray(String noSpaces) {
         char[] worldChar = noSpaces.toCharArray();
-        int arrayCnt = 0;
-        worldCharArray = new char[sizeX - 1][sizeY - 1];
-        for (int r = 0; r < sizeX - 1; r++) {
-            for (int c = 0; c < sizeY - 1; c++) {
-                worldCharArray[r][c] = worldChar[arrayCnt];
-            }
-        }
+            int arrayCnt = 0;
+            worldCharArray = new char[sizeX-1][sizeY-1];
+            for(int r = 0; r<sizeX-1; r++){
+                for(int c = 0; c<sizeY-1;c++){
+                    worldCharArray[r][c] = worldChar[arrayCnt];
+                    }
+                }
     }
-
-    char[][] getWorldCharArray() {
+    
+    char[][] getWorldCharArray(){
         return worldCharArray;
     }
-
-    int getX() {
+    
+    int getX(){
         return sizeX;
     }
-
-    int getY() {
+    
+    int getY(){
         return sizeY;
     }
 }
