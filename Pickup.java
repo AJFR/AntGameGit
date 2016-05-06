@@ -8,14 +8,11 @@ package assembledantgame;
  *
  * @author mfm29 Picks up dank herbs lol
  */
-public class Pickup {
-    Ant ant;
-    
-    public Pickup(Ant ant) {
-        this.ant = ant;
+public class Pickup {    
+    public Pickup() {
     }
     
-    public void pickUp(){
+    public void pickUp(Ant ant){
         ant.pickUpFood();
     }
 }

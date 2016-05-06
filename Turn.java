@@ -10,12 +10,7 @@ package assembledantgame;
  */
 public class Turn implements Instruction {
 
-    public Turn(GameObject lr, Ant ant) {
-        if(lr.obj.equals("left")){
-            ant.turnLeft();
-        }
-        if(lr.obj.equals("right")){
-            ant.turnRight();
-        }
+    public Turn() {
+        
     }
 }

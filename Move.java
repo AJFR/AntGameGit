@@ -9,15 +9,10 @@ package assembledantgame;
  * @author mfm29
  */
 public class Move implements Instruction {
-    Ant ant;
-    World world;
-    public Move(Ant ant, World world){
-        this.ant = ant;
-        this.world = world;
-        move();
+    public Move(){
     }
     
-    public void move(){
+    public void move(Ant ant, World world){
         world.moveAnt(ant);
     }
 }
