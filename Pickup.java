@@ -8,7 +8,7 @@ package assembledantgame;
  *
  * @author mfm29 Picks up dank herbs lol
  */
-public class Pickup {
+public class Pickup implements Instruction{
 
     public Pickup() {
     }

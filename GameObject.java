@@ -8,8 +8,9 @@ package assembledantgame;
  *
  * @author mfm29
  */
-public class Drop implements Instruction{
-    public Drop(){
-        
+public class GameObject implements  Instruction{
+    public String obj;
+    public GameObject(String obj){
+        this.obj = obj;
     }
 }
