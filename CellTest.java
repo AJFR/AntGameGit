@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package antgame;
+package assembledantgame;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  * @author ajfr20
  */
 public class CellTest {
-    public Cell cell;
+    private Cell cell;
     public CellTest() {
     }
     
@@ -29,7 +29,7 @@ public class CellTest {
     @Test
     public void testGetRow() {
         System.out.println("getRow");
-        int expResult = 1;
+        int expResult = 2;
         int result = cell.getRow();
         assertEquals(expResult,result);
     }
@@ -40,7 +40,7 @@ public class CellTest {
     @Test
     public void testGetColoumn() {
         System.out.println("getColoumn");
-        int expResult = 2;
+        int expResult = 1;
         int result = cell.getColoumn();
         assertEquals(expResult, result);
     }
@@ -107,7 +107,7 @@ public class CellTest {
     public void testGetAnthill() {
         System.out.println("getAnthill");
         boolean expResult = false;
-        boolean result = cell.getAnthill();
+        boolean result = cell.getAnthill(0);
         assertEquals(expResult, result);
     }
 
