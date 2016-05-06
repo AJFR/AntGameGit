@@ -9,7 +9,14 @@ package assembledantgame;
  * @author mfm29
  */
 public class Rest {
+    Ant ant;
+    
+    public Rest(Ant ant) {
+        this.ant = ant;
+        rest();
+    }
 
-    public Rest() {
+    private void rest() {
+        ant.rest();
     }
 }

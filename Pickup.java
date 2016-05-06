@@ -8,8 +8,14 @@ package assembledantgame;
  *
  * @author mfm29 Picks up dank herbs lol
  */
-public class Pickup implements Instruction{
-
-    public Pickup() {
+public class Pickup {
+    Ant ant;
+    
+    public Pickup(Ant ant) {
+        this.ant = ant;
+    }
+    
+    public void pickUp(){
+        ant.pickUpFood();
     }
 }

@@ -9,7 +9,12 @@ package assembledantgame;
  * @author mfm29
  */
 public class Flip implements Instruction{
-    public Flip(){
-        
+    Random rand;
+    public Flip(int seed){
+        rand = new Random(seed);
+    }
+    
+    public int randomInt(int n){
+        return rand.randomInt(n);
     }
 }
