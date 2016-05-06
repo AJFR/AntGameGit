@@ -9,7 +9,13 @@ package assembledantgame;
  * @author mfm29
  */
 public class Drop implements Instruction{
-    public Drop(){
-        
+    Ant ant;
+    public Drop(Ant ant){
+        this.ant = ant;
+        drop();
+    }
+    
+    void drop(){
+        ant.dropFood();
     }
 }
