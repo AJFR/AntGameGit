@@ -1,6 +1,5 @@
 package filechoosertest;
 
-//
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -14,12 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class FileChooserTest extends JFrame {
+public class FileChooserTest2 extends JFrame {
   private JTextField filename = new JTextField(), dir = new JTextField();
   public String pathName;
   private JButton open = new JButton("Open"), save = new JButton("Save");
 
-  public FileChooserTest() {
+  public FileChooserTest2() {
     JPanel p = new JPanel();
     open.addActionListener(new OpenL());
     p.add(open);
@@ -41,7 +40,7 @@ public class FileChooserTest extends JFrame {
       JFileChooser c = new JFileChooser();
       c.addChoosableFileFilter(new FileNameExtensionFilter("Text Files","brain"));
       // Demonstrate "Open" dialog:
-      int rVal = c.showOpenDialog(FileChooserTest.this);
+      int rVal = c.showOpenDialog(FileChooserTest2.this);
       if (rVal == JFileChooser.APPROVE_OPTION) {
         filename.setText(c.getSelectedFile().getName());
         dir.setText(c.getCurrentDirectory().toString());
@@ -61,10 +60,10 @@ public class FileChooserTest extends JFrame {
       }
     }
   
- public static void FileChooserTest() {
+ public static void FileChooserTest2() {
     
   }
-  public static void run(JFrame frame, int width, int height) {
+  public static void runa(JFrame frame, int width, int height) {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(width, height);
     frame.setVisible(true);
